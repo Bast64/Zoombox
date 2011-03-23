@@ -22,6 +22,7 @@ var width;
 var height;
 var timer;          // Timing for img loading
 var i = 0;          // iteration variable
+var html_content = 0;// verif html
 var content;        // The content of the box
 var type = 'multimedia'; // Content type
 var position = false;
@@ -74,7 +75,8 @@ $.zoombox.html = function(cont,opts){
     width = options.width;
     height = options.height;
     elem = null;
-    open();
+    html_content = 1;
+    load();
 }
 $.fn.zoombox = function(opts){    
     /**
@@ -398,7 +400,7 @@ function setContent(){
         url=url.split('.html');
         url=url[0];
         content='<object type="application/x-shockwave-flash" data="'+url+'" width="'+width+'" height="'+height+'"><param name="movie" value="'+url+'"><embed src="'+url+'" type="application/x-shockwave-flash" width="'+width+'" height="'+height+'"  wmode="transparent"></embed></object>';
-    }else{
+    }else if(html_content = 0){
         content='<iframe src="'+url+'" width="'+width+'" height="'+height+'" border="0"></iframe>';
     }
     return content;
